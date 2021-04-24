@@ -43,6 +43,7 @@ class DistanceTimeRequest {
         );
     }
     public function getIsoPoints() {
+        var_dump(json_encode($this->postFields));
         $c = curl_init();
         curl_setopt($c,CURLOPT_URL,$this->url);
         curl_setopt($c,CURLOPT_HTTPHEADER,$this->header);
