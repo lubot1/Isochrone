@@ -5,8 +5,6 @@ require_once "./Models/isochrone.php";
 //$json = file_get_contents('./keys.json');
 //$keysInfo = json_decode($json);
 $keysInfo = ["APP_ID" => getenv("APP_ID"), "API_KEY" => getenv("API_KEY")];
-$app = getenv('APP_ID');
-var_dump($app);
 $isoBounds = new DistanceTimeRequest($keysInfo);
 $isoBounds->getIsoPoints();
 
