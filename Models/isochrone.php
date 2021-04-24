@@ -9,8 +9,8 @@ class DistanceTimeRequest {
     private $postFields;
 
     public function __construct($keysInfo) {
-        $this->AppId = $keysInfo->APP_ID;
-        $this->ApiKey = $keysInfo->API_KEY;
+        $this->AppId = $keysInfo["APP_ID"];
+        $this->ApiKey = $keysInfo["API_KEY"];
 
         $this->header = array(
             "Host: api.traveltimeapp.com",
@@ -19,7 +19,6 @@ class DistanceTimeRequest {
             "X-Application-Id: ".$this->AppId,
             "X-Api-Key: ".$this->ApiKey
         );
-        var_dump($keysInfo);
         //$this->coordinates = $coordinates;
         //$this->selectedTime = $selectedTime;
         $this->postFields = array(
