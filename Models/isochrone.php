@@ -91,7 +91,7 @@ class DistanceTimeRequest {
         }',
         CURLOPT_HTTPHEADER => array(
             'X-Api-Key: '.getenv("API_KEY"),
-            'X-Application-Id: e84d498f'.getenv("APP_ID"),
+            'X-Application-Id: '.getenv("APP_ID"),
             'Content-Type: application/json'
         ),
         ));
