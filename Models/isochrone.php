@@ -13,8 +13,8 @@ class DistanceTimeRequest {
         $this->ApiKey = $keysInfo["API_KEY"];
 
         $this->header = array(
-            "Host: api.traveltimeapp.com",
-            "Content-Type: application/json",
+            //"Host: api.traveltimeapp.com",
+            "Content-Type: application/json;charset=UTF-8",
             "Accept: application/json",
             "X-Application-Id: ".$this->AppId,
             "X-Api-Key: ".$this->ApiKey
@@ -36,14 +36,15 @@ class DistanceTimeRequest {
                     )
                 ),
                 array(
-                    "departure_time" => "2021-04-24T08:00:00Z",
+                    "departure_time" => "2021-04-24T14:00:00Z",
                     "travel_time" => 900
                 )
-            )
+                ),
+            "arrival-searches" => array()
         );
     }
     public function getIsoPoints() {
-        var_dump(json_encode($this->postFields));
+        //var_dump(json_encode($this->postFields));
         $c = curl_init();
         curl_setopt($c,CURLOPT_URL,$this->url);
         curl_setopt($c,CURLOPT_HTTPHEADER,$this->header);
