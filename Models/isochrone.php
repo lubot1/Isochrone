@@ -44,18 +44,63 @@ class DistanceTimeRequest {
         );
     }
     public function getIsoPoints() {
-        //var_dump(json_encode($this->postFields));
-        $c = curl_init();
-        curl_setopt($c,CURLOPT_URL,$this->url);
-        curl_setopt($c,CURLOPT_HTTPHEADER,$this->header);
-        curl_setopt($c, CURLOPT_POST, true);
-        curl_setopt($c, CURLOPT_POSTFIELDS, json_encode($this->postFields));
-        curl_setopt($c, CURLOPT_SSLVERSION, 6);
-        curl_setopt($c, CURLOPT_RETURNTRANSFER, TRUE);
-        $result = json_decode(curl_exec($c));
-        curl_close($c);
+        $curl = curl_init();
 
-        var_dump($result);
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.traveltimeapp.com/v4/time-map',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'{
+            "departure_searches": [
+                {
+                    "id": "public transport from Trafalgar Square",
+                    "coords": {
+                        "lat": 51.507609,
+                        "lng": -0.128315
+                    },
+                    "transportation": {
+                        "type": "public_transport"
+                    },
+                    "departure_time": "2021-04-24T08:00:00Z",
+                    "travel_time": 900
+                }
+            ],
+            "arrival_searches": [
+                {
+                    "id": "public transport to Trafalgar Square",
+                    "coords": {
+                        "lat": 51.507609,
+                        "lng": -0.128315
+                    },
+                    "transportation": {
+                        "type": "public_transport"
+                    },
+                    "arrival_time": "2021-04-24T08:00:00Z",
+                    "travel_time": 900,
+                    "range": {
+                        "enabled": true,
+                        "width": 3600
+                    }
+                }
+            ]
+        }',
+        CURLOPT_HTTPHEADER => array(
+            'X-Api-Key: '.$this->AppKey,
+            'X-Application-Id: e84d498f'.$this->AppId,
+            'Content-Type: application/json'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+
     }
 }
 ?>
