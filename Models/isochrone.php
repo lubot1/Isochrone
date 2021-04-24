@@ -19,7 +19,7 @@ class DistanceTimeRequest {
             "X-Application-Id: ".$this->AppId,
             "X-Api-Key: ".$this->ApiKey
         );
-        var_dump($this->header);
+        var_dump($keysInfo);
         //$this->coordinates = $coordinates;
         //$this->selectedTime = $selectedTime;
         $this->postFields = array(
