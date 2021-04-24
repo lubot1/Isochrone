@@ -1,6 +1,12 @@
 <?php 
 include "./Views/Components/header.php";
+require_once "./Models/isochrone.php";
 
+//$json = file_get_contents('./keys.json');
+//$keysInfo = json_decode($json);
+$keysInfo = ["APP_ID" => getenv("APP_ID"), "API_KEY" => getenv("API_KEY")];
+$isoBounds = new DistanceTimeRequest($keysInfo);
+$isoBounds->getIsoPoints();
 
 ?>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1iQJm4S8GybM8MysZdPXvERLs6cFpCtk&callback=initMap&libraries=geometry" defer></script>
