@@ -2,9 +2,9 @@
 require_once "./Models/isochrone.php";
 $coords = array("lat"=>43.64538993070304,"lng"=>-79.38089475089429);
 $today = date("c");
-var_dump($today);
-$isoBounds = new DistanceTimeRequest($coords,);
+$isoBounds = new DistanceTimeRequest($coords,$today);
 $data = json_decode($isoBounds->getIsoPoints());
+var_dump($data);
 ?>
 <script>
 function initMap() {
