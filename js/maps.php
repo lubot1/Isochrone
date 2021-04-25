@@ -1,7 +1,9 @@
 <?php 
 require_once "./Models/isochrone.php";
-
-$isoBounds = new DistanceTimeRequest($keysInfo);
+$coords = array("lat"=>43.64538993070304,"lng"=>-79.38089475089429);
+$today = date("c");
+var_dump($today);
+$isoBounds = new DistanceTimeRequest($coords,);
 $data = json_decode($isoBounds->getIsoPoints());
 ?>
 <script>
