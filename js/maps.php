@@ -1,5 +1,5 @@
 <?php 
-require_once "../Models/isochrone.php";
+require_once "./Models/isochrone.php";
 
 $isoBounds = new DistanceTimeRequest($keysInfo);
 $data = json_decode($isoBounds->getIsoPoints());
