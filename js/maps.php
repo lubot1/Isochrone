@@ -7,7 +7,7 @@ $data = $isoBounds->getIsoPoints();
 ?>
 <script>
 function initMap() {
-  var data = <?= $data ?>
+  var data = <?= $data ?>;
   console.log(data);
   //Initialize new map object
   map = new google.maps.Map(document.getElementById("map"), {
