@@ -1,4 +1,10 @@
+<?php 
+require_once "../Models/isochrone.php";
 
+$isoBounds = new DistanceTimeRequest($keysInfo);
+$data = json_decode($isoBounds->getIsoPoints());
+?>
+<script>
 function initMap() {
     //Initialize new map object
       map = new google.maps.Map(document.getElementById("map"), {
@@ -15,4 +21,4 @@ function initMap() {
           map.setZoom(8);
       });
   }
-  
+</script>
