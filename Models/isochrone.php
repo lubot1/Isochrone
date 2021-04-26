@@ -42,7 +42,22 @@ class DistanceTimeRequest {
             'Content-Type: application/json'
         ),
         ));
-
+        echo('{
+            "departure_searches": [
+                {
+                    "id": "public transport from Trafalgar Square",
+                    "coords": {
+                        "lat": '.$this->coordinates->lat.',
+                        "lng": '.$this->coordinates->lng.'
+                    },
+                    "transportation": {
+                        "type": "public_transport"
+                    },
+                    "departure_time": '.$this->selectedTime.',
+                    "travel_time": 900
+                }
+            ]
+        }');
         $response = curl_exec($curl);
         curl_close($curl);
         return $response;
