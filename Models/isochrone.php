@@ -25,8 +25,8 @@ class DistanceTimeRequest {
                 {
                     "id": "public transport from Trafalgar Square",
                     "coords": {
-                        "lat": '.$this->coordinates['lat'].',
-                        "lng": '.$this->coordinates['lng'].'
+                        "lat": '.$this->coordinates->lat.',
+                        "lng": '.$this->coordinates->lng.'
                     },
                     "transportation": {
                         "type": "public_transport"
