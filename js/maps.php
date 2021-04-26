@@ -2,11 +2,19 @@
 require_once "./Models/isochrone.php";
 $coords = array("lat"=>43.64538993070304,"lng"=>-79.38089475089429);
 $today = "\"".date("c")."\"";
+
 $isoBounds = new DistanceTimeRequest($coords,$today);
 $data = $isoBounds->getIsoPoints();
+
+if(isset($_POST['submit'])) {
+  //TODO: take post data and adjust search parameters
+  // Find a way to return coordinates from click event and pass it back to server
+}
 ?>
+
 <script>
 function initMap() {
+  // TODO: Add an api to serve JSON data of shells and holes on click
   var data = <?= $data ?>;
   const isoShell = data.results[0].shapes[0].shell;
   //Initialize new map object
@@ -23,14 +31,5 @@ function initMap() {
     fillOpacity: 0.35,
   });
   isoBorders.setMap(map);
-  //Created using the events sample at https://developers.google.com/maps/documentation/javascript/events#maps_event_simple-javascript
-  // map.addListener("click", (e) => {
-  //   new google.maps.Marker({
-  //     position: e.latLng,
-  //     map: map
-  //   });
-  //   map.panTo(e.latLng)
-  //   map.setZoom(8);
-  // });
 }
 </script>

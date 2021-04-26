@@ -7,5 +7,23 @@ include "./js/maps.php";
 
 <link rel="stylesheet" href="./Stylesheets/map.css">
 
-<h1>Test</h1>
+<h1>Isochrone</h1>
+<form action="" method="post" name="isochroneControl">
+    <label for="City" class="sr-only">City</label>
+    <input type="text" name="City" id="CityInput" placeholder="City">
+    <label for="DepartureTime" class="sr-only">Departure Time</label>
+    <input type="time" name="DepartureTime" id="" placeholder="Departure Time">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Mobility method</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+            <option selected value="publicTransit">Public Transit</option>
+            <option value="walk">Walking</option>
+            <option value="car">Car</option>
+            <option value="cycling">Cycling</option>
+        </select>
+    </div>
+    <input type="submit" value="Search" name="submit" class="btn btn-success">
+</form>
 <div id="map"></div>
