@@ -5,17 +5,13 @@ $today = "\"".date("c")."\"";
 
 $isoBounds = new DistanceTimeRequest($coords,$today);
 $data = $isoBounds->getIsoPoints();
-
-if(isset($_POST['submit'])) {
-  //TODO: take post data and adjust search parameters
-  // Find a way to return coordinates from click event and pass it back to server
-}
 ?>
 
 <script>
 function initMap() {
   // TODO: Add an api to serve JSON data of shells and holes on click
   var data = <?= $data ?>;
+  console.log(data);
   const isoShell = data.results[0].shapes[0].shell;
   //Initialize new map object
   map = new google.maps.Map(document.getElementById("map"), {
