@@ -9,7 +9,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $data = json_decode(file_get_contents("php://input"));
-echo($data);
+var_dump($data);
 if (!empty($data->coords) && !empty($data->selectedTime)) {
     $isoBounds = new DistanceTimeRequest($data->coords,$data->selectedTime);
     $dataOut = $isoBounds->getIsoPoints();
