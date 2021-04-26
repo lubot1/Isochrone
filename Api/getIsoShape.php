@@ -14,6 +14,7 @@ if (!empty($data->coords) && !empty($data->selectedTime)) {
     $isoBounds = new DistanceTimeRequest($data->coords,$data->selectedTime);
     $dataOut = $isoBounds->getIsoPoints();
     $dataOut = json_decode($dataOut);
+    var_dump(json_encode($data));
     var_dump($dataOut);
     if (isset($dataOut->results)) {
         http_response_code(200);
