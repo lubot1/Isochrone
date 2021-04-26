@@ -16,7 +16,7 @@ function initMap() {
   //Initialize new map object
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 43.64538993070304, lng: -79.38089475089429 },
-    zoom: 4,
+    zoom: 6,
   });
   const isoBorders = new google.maps.Polygon({
     paths: isoShell,

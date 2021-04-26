@@ -12,8 +12,19 @@ $data = json_decode(file_get_contents("php://input"));
 if (!empty($data->coords) && !empty($data->selectedTime)) {
     $isoBounds = new DistanceTimeRequest($data->coords,$data->selectedTime);
     $dataOut = $isoBounds->getIsoPoints();
-    if (true) {
-        # code...
+    $dataOut = json_decode($dataOut);
+
+    if (isset($dataOut->results)) {
+        http_response_code(200);
+        echo(json_encode($dataOut->results[0]->shapes));
     }
+    else {
+        http_response_code(503);
+        echo(json_encode(array("message"=>"Something went wrong on our side")));
+    }
+}
+else {
+    http_response_code(400);
+    echo(json_encode(array("message"=>"Missing data")));
 }
 ?>
