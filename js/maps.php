@@ -18,7 +18,7 @@ function initMap() {
     });
 
     map.addListener("click", (res) => {
-      data = res.latLng;
+      data = res.latLng.toJSON();
       console.log(data);
       map.panTo(res.latLng);
       map.setZoom(8);
