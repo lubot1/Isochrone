@@ -24,7 +24,7 @@ if (!empty($data->coordinates) && !empty($data->mode) && !empty($data->timeRange
     else {
         http_response_code(503);
         echo(json_encode(array("message"=>"Something went wrong on our side")));
-        var_dump($dataOut);
+        var_dump(json_encode($dataOut));
     }
 }
 else {
