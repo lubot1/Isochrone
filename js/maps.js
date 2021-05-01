@@ -12,8 +12,8 @@ function initMap() {
 
       var data = {
         coordinates: location,
-        mode: "transit",
-        timeRange: 300,
+        mode: "approximated_transit",
+        timeRange: 1800,
       };
       $.post("../Api/getIsoShape.php",JSON.stringify(data),function (response, status) {
         //response is an array of shapes to draw on the map
@@ -22,7 +22,7 @@ function initMap() {
           fillColor: 'blue',
           strokeWeight: 1,
         });
-        console.log(response);
+        console.log(map.data);
 
       });
       map.panTo(res.latLng);
