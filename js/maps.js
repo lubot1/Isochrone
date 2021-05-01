@@ -7,12 +7,14 @@ function initMap() {
 
     map.addListener("click", (res) => {
       var currTime = new Date(Date.now());
+      var location = res.latLng.toJSON();
       var data = {
-        coords: res.latLng.toJSON(),
+        coords: location,
         selectedTime: currTime.toISOString()
       };
-      $.post("../Api/getIsoShape.php",data,function (response, status) {
-        console.log(response);
+      console.log(data);
+      $.post("../Api/getIsoShape.php",JSON.stringify(data),function (response, status) {
+        console.log(data);
       });
       map.panTo(res.latLng);
       map.setZoom(8);
