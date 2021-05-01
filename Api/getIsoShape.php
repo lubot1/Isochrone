@@ -12,7 +12,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $data = json_decode(file_get_contents("php://input"));
 
 if (!empty($data->coordinates) && !empty($data->mode) && !empty($data->timeRange)) {
-    $isoBounds = new DistanceTimeRequest($data->coords,$data->mode,$data->timeRange);
+    $isoBounds = new DistanceTimeRequest($data->coordinates,$data->mode,$data->timeRange);
     
     $dataOut = $isoBounds->getIsoPoints();
     $dataOut = json_decode($dataOut);
