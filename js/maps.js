@@ -1,9 +1,13 @@
 function initMap() {
-  var data;
+  var data = {
+    mode: 'drive',
+    timeRange: 300
+  };
   var newLayer;
   var city;
   var mode;
   var range;
+  var geocoder = new google.maps.Geocoder();
 
   var control = document.forms.controls;
   var cityInput = control.city;
@@ -20,7 +24,14 @@ function initMap() {
     city = cityInput.value;
     mode = modeInput.value;
     range = rangeInput.value;
-    
+
+    geocoder.geocode({ 'address': city}, function(results, status) {
+      if(status == 'OK') {
+        console.log(results);
+        map.panTo(results[0].geometry.location);
+      }
+    });
+
     data = {
       mode: mode,
       timeRange: range,
