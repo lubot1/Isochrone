@@ -1,6 +1,5 @@
 function initMap() {
-  var holesArray = [];
-  var shellArray = [];
+  var newLayer
 
   map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 43.64538993070304, lng: -79.38089475089429 },
@@ -8,6 +7,7 @@ function initMap() {
     });
 
     map.addListener("click", (res) => {
+      map.data.remove(newLayer);
       var location = res.latLng.toJSON();
 
       var data = {
@@ -17,7 +17,7 @@ function initMap() {
       };
       $.post("../Api/getIsoShape.php",JSON.stringify(data),function (response, status) {
         //response is an array of shapes to draw on the map
-        map.data.addGeoJson(response);
+        newLayer = map.data.addGeoJson(response);
         map.data.setStyle({
           fillColor: 'blue',
           strokeWeight: 1,
