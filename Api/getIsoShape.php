@@ -23,6 +23,7 @@ if (!empty($data->coords) && !empty($data->selectedTime)) {
     else {
         http_response_code(503);
         echo(json_encode(array("message"=>"Something went wrong on our side")));
+        var_dump($dataOut);
     }
 }
 else {
