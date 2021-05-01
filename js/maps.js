@@ -14,7 +14,7 @@ function initMap() {
       shellArray.forEach(element => {
         element.setMap(null);
       });
-      
+
       var currTime = new Date(Date.now());
       var location = res.latLng.toJSON();
       var data = {
@@ -51,16 +51,4 @@ function initMap() {
       });
       map.panTo(res.latLng);
     });
-
-  const isoShell = data.results[0].shapes[0].shell;
-  //Initialize new map object
-  const isoBorders = new google.maps.Polygon({
-    paths: isoShell,
-    strokeColor: "#FF0000",
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
-    fillColor: "#FF0000",
-    fillOpacity: 0.35,
-  });
-  isoBorders.setMap(map);
 }
