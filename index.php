@@ -2,12 +2,13 @@
 include "./Views/Components/header.php";
 include "config.php";
 ?>
-<script src="./js/maps.js"></script>
+
 <script
   src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
   integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
   crossorigin="anonymous">
 </script>
+<script src="./js/maps.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1iQJm4S8GybM8MysZdPXvERLs6cFpCtk&callback=initMap&libraries=geometry" defer></script>
 
 <link rel="stylesheet" href="./Stylesheets/map.css">
