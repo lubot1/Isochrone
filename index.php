@@ -36,7 +36,7 @@ include "config.php";
             <select class="form-select" id="mode" name="mode">
                 <option value="walk">Walk</option>
                 <option value="cycle">Cycle</option>
-                <option value="transit_approximated">Transit</option>
+                <option value="approximated_transit">Transit</option>
                 <option value="drive">Drive</option>
             </select>
         </div>
