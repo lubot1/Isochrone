@@ -1,16 +1,4 @@
-<?php 
-require_once "./Models/isochrone.php";
-// $coords->lat = 43.64538993070304;
-// $coords->lng = -79.38089475089429;
-// $today = "\"".date("c")."\"";
-
-//$isoBounds = new DistanceTimeRequest($coords,$today);
-//$data = $isoBounds->getIsoPoints();
-?>
-
-<script>
 function initMap() {
-  var data;
   // var data = $data;
   map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 43.64538993070304, lng: -79.38089475089429 },
@@ -18,8 +6,14 @@ function initMap() {
     });
 
     map.addListener("click", (res) => {
-      data = res.latLng.toJSON();
-      console.log(data);
+      var currTime = new Date(Date.now());
+      var data = {
+        coords: res.latLng.toJSON(),
+        selectedTime: currTime.toISOString()
+      };
+      $.post("../Api/getIsoShape.php",data,function (response, status) {
+        console.log(response);
+      });
       map.panTo(res.latLng);
       map.setZoom(8);
     });
@@ -36,4 +30,3 @@ function initMap() {
   // });
   // isoBorders.setMap(map);
 }
-</script>
