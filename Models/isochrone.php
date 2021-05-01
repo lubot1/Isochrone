@@ -9,7 +9,9 @@ class DistanceTimeRequest {
         $this->mode = $mode;
         $this->timeRange = $timeRange;
     }
+
     public function getIsoPoints() {
+        // GET request for geoapify API
         $baseURL = "https://api.geoapify.com/v1/isoline";
         $lat = "lat=".$this->coordinates->lat;
         $lng = "&lon=".$this->coordinates->lng;
