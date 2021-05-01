@@ -11,7 +11,7 @@ require_once "./Models/isochrone.php";
 <script>
 function initMap() {
   var data;
-  // var data = <?= $data ?>;
+  // var data = $data;
   map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 43.64538993070304, lng: -79.38089475089429 },
       zoom: 8,
