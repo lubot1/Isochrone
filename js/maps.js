@@ -14,10 +14,9 @@ function initMap() {
       };
       console.log(data);
       $.post("../Api/getIsoShape.php",JSON.stringify(data),function (response, status) {
-        console.log(data);
+        console.log(response);
       });
       map.panTo(res.latLng);
-      map.setZoom(8);
     });
 
   // const isoShell = data.results[0].shapes[0].shell;
