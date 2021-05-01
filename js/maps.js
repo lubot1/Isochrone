@@ -1,7 +1,7 @@
 function initMap() {
   var holesArray = [];
   var shellArray = [];
-  // var data = $data;
+
   map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 43.64538993070304, lng: -79.38089475089429 },
       zoom: 8,
@@ -16,39 +16,43 @@ function initMap() {
       });
 
       var currTime = new Date(Date.now());
+
       var location = res.latLng.toJSON();
+
       var data = {
-        coords: location,
-        selectedTime: currTime.toISOString()
+        coordinates: location,
+        mode: "transit",
+        timeRange: 300,
       };
       $.post("../Api/getIsoShape.php",JSON.stringify(data),function (response, status) {
         //response is an array of shapes to draw on the map
-        response.forEach(shapeObject => {
+        // response.forEach(shapeObject => {
 
-          var hole = new google.maps.Polygon({
-            paths: shapeObject.hole,
-            strokeColor: "#FF0000",
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: "#FF0000",
-            fillOpacity: 0,
-            map: map,
-          });
-          holesArray.push(hole);
+        //   var hole = new google.maps.Polygon({
+        //     paths: shapeObject.hole,
+        //     strokeColor: "#FF0000",
+        //     strokeOpacity: 0.8,
+        //     strokeWeight: 2,
+        //     fillColor: "#FF0000",
+        //     fillOpacity: 0,
+        //     map: map,
+        //   });
+        //   holesArray.push(hole);
 
-          var shell = new google.maps.Polygon({
-            paths: shapeObject.shell,
-            strokeColor: "#FF0000",
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
-            map: map,
-          });
-          shellArray.push(hole);
-        });
-        console.log(response);
+        //   var shell = new google.maps.Polygon({
+        //     paths: shapeObject.shell,
+        //     strokeColor: "#FF0000",
+        //     strokeOpacity: 0.8,
+        //     strokeWeight: 2,
+        //     fillColor: "#FF0000",
+        //     fillOpacity: 0.35,
+        //     map: map,
+        //   });
+        //   shellArray.push(hole);
+        // });
+        // console.log(response);
       });
+      console.log(response);
       map.panTo(res.latLng);
     });
 }
