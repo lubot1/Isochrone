@@ -1,64 +1,46 @@
 <?php
 class DistanceTimeRequest {
     private $coordinates;
-    private $selectedTime;
+    private $mode;
+    private $timeRange;
 
-    public function __construct($coordinates,$selectedTime) {
+    public function __construct($coordinates,$mode, $timeRange) {
         $this->coordinates = $coordinates;
-        $this->selectedTime = $selectedTime;
+        $this->mode = $mode;
+        $this->timeRange = $timeRange;
     }
+
     public function getIsoPoints() {
+        // GET request for geoapify API
+        $baseURL = "https://api.geoapify.com/v1/isoline";
+        $lat = "lat=".$this->coordinates->lat;
+        $lng = "&lon=".$this->coordinates->lng;
+        $mode = "&mode=".$this->mode;
+        $type = "&type=time";
+        $range = "&range=".$this->timeRange;
+        $ApiKey = "&apiKey=".getenv('API_KEY');
+
+        $request = $baseURL."?".$lat.$lng.$mode.$type.$range.$ApiKey;
+
         // POSTMAN rocks!
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.traveltimeapp.com/v4/time-map',
+        CURLOPT_URL => $request,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
         CURLOPT_TIMEOUT => 0,
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS =>'{
-            "departure_searches": [
-                {
-                    "id": "public transport from Trafalgar Square",
-                    "coords": {
-                        "lat": '.$this->coordinates->lat.',
-                        "lng": '.$this->coordinates->lng.'
-                    },
-                    "transportation": {
-                        "type": "public_transport"
-                    },
-                    "departure_time": '."\"".$this->selectedTime."\"".',
-                    "travel_time": 900
-                }
-            ]
-        }',
-        CURLOPT_HTTPHEADER => array(
-            'X-Api-Key: '.getenv("API_KEY"),
-            'X-Application-Id: '.getenv("APP_ID"),
-            'Content-Type: application/json'
-        ),
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        // CURLOPT_HTTPHEADER => array(
+        //     'Cookie: __cfduid=d472e16553cac5c583b11cda905f0e4361619898057'
+        // ),
         ));
-        // echo('{
-        //     "departure_searches": [
-        //         {
-        //             "id": "public transport from Trafalgar Square",
-        //             "coords": {
-        //                 "lat": '.$this->coordinates->lat.',
-        //                 "lng": '.$this->coordinates->lng.'
-        //             },
-        //             "transportation": {
-        //                 "type": "public_transport"
-        //             },
-        //             "departure_time": '.$this->selectedTime.',
-        //             "travel_time": 900
-        //         }
-        //     ]
-        // }');
+
         $response = curl_exec($curl);
+
         curl_close($curl);
         return $response;
     }

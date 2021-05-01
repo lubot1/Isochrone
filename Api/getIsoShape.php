@@ -8,22 +8,23 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 // Example request to /Api/getIsoShape.php
-// {"coords": {"lat": 43.64538993070304, "lng": -79.38089475089429}, "selectedTime": "2021-04-26T15:17:34+0000"}
+// {"coordinates": {"lat": 43.64538993070304, "lng": -79.38089475089429}, "mode": "transit", "timeRange": 300}
 $data = json_decode(file_get_contents("php://input"));
 
-if (!empty($data->coords) && !empty($data->selectedTime)) {
-    $isoBounds = new DistanceTimeRequest($data->coords,$data->selectedTime);
+if (!empty($data->coordinates) && !empty($data->mode) && !empty($data->timeRange)) {
+    $isoBounds = new DistanceTimeRequest($data->coordinates,$data->mode,$data->timeRange);
+    
     $dataOut = $isoBounds->getIsoPoints();
     $dataOut = json_decode($dataOut);
 
-    if (isset($dataOut->results)) {
+    if (isset($dataOut->features)) {
         http_response_code(200);
-        echo(json_encode($dataOut->results[0]->shapes));
+        echo(json_encode($dataOut));
     }
     else {
         http_response_code(503);
         echo(json_encode(array("message"=>"Something went wrong on our side")));
-        var_dump($dataOut);
+        var_dump(json_encode($dataOut));
     }
 }
 else {
