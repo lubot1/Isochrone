@@ -50,9 +50,9 @@ function initMap() {
         //   });
         //   shellArray.push(hole);
         // });
-        // console.log(response);
+        console.log(response);
+
       });
-      console.log(response);
       map.panTo(res.latLng);
     });
 }
