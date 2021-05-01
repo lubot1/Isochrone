@@ -17,9 +17,9 @@ if (!empty($data->coordinates) && !empty($data->mode) && !empty($data->timeRange
     $dataOut = $isoBounds->getIsoPoints();
     $dataOut = json_decode($dataOut);
 
-    if (isset($dataOut->features)) {
+    if (isset($dataOut->features->geometry)) {
         http_response_code(200);
-        echo(json_encode($dataOut->geometry->coordinates));
+        echo(json_encode($dataOut->features->geometry->coordinates));
     }
     else {
         http_response_code(503);
