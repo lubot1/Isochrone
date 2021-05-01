@@ -19,10 +19,10 @@ function initMap() {
 
     map.addListener("click", (res) => {
       data = res.latLng;
+      console.log(data);
       map.panTo(res.latLng);
       map.setZoom(8);
     });
-  console.log(data);
 
   // const isoShell = data.results[0].shapes[0].shell;
   // //Initialize new map object
