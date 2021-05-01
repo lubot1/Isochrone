@@ -7,7 +7,9 @@ function initMap() {
     });
 
     map.addListener("click", (res) => {
-      map.data.remove(newLayer);
+      map.data.forEach((feature) => {
+        map.data.remove(feature);
+      });
       var location = res.latLng.toJSON();
 
       var data = {
