@@ -17,7 +17,7 @@ function initMap() {
       };
       $.post("../Api/getIsoShape.php",JSON.stringify(data),function (response, status) {
         //response is an array of shapes to draw on the map
-        map.data.loadGeoJson(response);
+        map.data.addGeoJson(response);
         map.data.setStyle({
           fillColor: 'blue',
           strokeWeight: 1,
