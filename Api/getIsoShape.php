@@ -19,7 +19,7 @@ if (!empty($data->coordinates) && !empty($data->mode) && !empty($data->timeRange
 
     if (isset($dataOut->features)) {
         http_response_code(200);
-        echo(json_encode($dataOut->features[0]->geometry->coordinates));
+        echo(json_encode($dataOut));
     }
     else {
         http_response_code(503);
